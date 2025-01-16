@@ -27,7 +27,10 @@ class Model {
      * @return Array
      */
     public function getEvents() {
-        // à vous de l'écrire - allez voir ce qu'on a déjà fait en php
+       $query = "SELECT * FROM events ORDER BY id ASC";
+       $stmt = $this->bdd->prepare($query);
+       $stmt->execute();
+       return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }

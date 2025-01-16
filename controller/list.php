@@ -2,10 +2,15 @@
 session_start();
 require_once('../model/model.php');
 
-//Récupération du nom d'utilisateur
+if (!isset($_POST['username']) || empty($_POST['username'])) {
+    header('Location : home.php');
+    exit();
+}
 
+$_SESSION['username'] = $_POST['username'];
 
-//récupération de la liste des évènements dans la base de données
-
+require_once('../model/model.php');
+$model =  new Model();
+$events = $model->getEvents();
 
 require_once('../view/listView.php');
